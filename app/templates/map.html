@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="mainWrap navslide">
+            <div class="ui equal width left aligned padded grid stackable">
+
+                <div class="row">
+                    <div class="sixteen wide tablet eight wide computer column">
+                        <div class="ui segments">
+                            <div class="ui segment">
+                                <h5 class="ui header">
+                                    Map Or StreetView
+                                </h5>
+                            </div>
+                            <div class="ui segment">
+                                <div id="MapOrStreetView" style="width:100%;height:380px;"></div>
+                                <!--<div class="ui embed" data-source="youtube" data-id="gtTfd6tISfw" data-placeholder="img/deadpool.jpeg"><i class="video play icon"></i><img class="placeholder" src="img/deadpool.jpeg"></div>-->
+                            </div>
+                            <!--<button class="ui inverted orange button">olive</button>-->
+                            <!--<button class="ui inverted blue button">Blue</button>-->
+                            <div class="ui animated fade button" id= "StreetView"
+                                 style="background-color: #55ACEE;
+                                        margin-top: 2%; margin-left: 20%;width: 20%"
+                                        onclick="initStreet(51.5083789,-0.1676866)">
+                                <div class="visible content">StreetView</div>
+                                <div class="hidden content">
+                                    Go!
+                                </div>
+                            </div>
+
+                            <div class="ui animated fade button" id= "OriginMap"
+                                 style="background-color: #FFB70A;
+                                 margin-top: 2%; margin-left: 20%;width: 20%"
+                                 onclick="initMap(51.5083789,-0.1676866)">
+                                <div class="visible content">Origin Map</div>
+                                <div class="hidden content">
+                                    GO!
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+<script src="static/js/map.js"></script><script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB3ulTQCxzq5RTXxvXlID2FRg3Qgvpzlbo">
+</script>
+{% endblock %}

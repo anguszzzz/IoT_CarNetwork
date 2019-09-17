@@ -1,0 +1,92 @@
+
+{% extends "layout.html" %}
+{% block head %}
+    {{ super() }}
+    <script src="../static/pagination.js"></script>
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <!--<link href="../static/search-result.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="{{url_for('static',filename = 'search-result.css')}}">
+{% endblock %}
+{% block content %}
+    {{ super() }}
+
+    <div class="resultsAndRecords" style="margin-left: 50px;
+    font-family: 'Shadows Into Light Two', sans-serif;
+    font-size: 30px;">
+        <div style="margin-top:100px;" class="row flex-vertical-center:300px">
+            <div class="col-md-6">
+                <span class="sub-title">Search for <span class="space highlight"
+                                                 id="keyword">{{ qurey }}</span> Results </span>
+            </div>
+            <div class="col-md-3 col-md-offset-2">
+                <span class="sub-title"> Total <span class="space"
+                                                 id="total">{{ total }}</span> records </span>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row" >
+         <div class="flex-hor-center">
+               <div class="pagination" id="pagination">
+                   {% for i in data %}
+                    <div class="row col-padding">
+
+                            <div class="col-md-2">
+
+                            </div>
+                            <li class="col-md-7 flex-vertical description-font">
+                                <span class="title">{{ i.name }}</span>
+
+                                {% set temp=i.highlights %}
+                                {{ temp }}
+                                <a class="summary">{{ i.url | default('', true) }}</a>
+
+                             </li>
+                    </div>
+                    {% endfor %}
+               </div>
+         </div>
+    </div>
+{% endblock %}
+
+<!--<div id="wrapper">-->
+    <!--<section>-->
+        <!--<div class="data-container"></div>-->
+        <!--<div id="pagination-demo1"></div>-->
+    <!--</section>-->
+<!--</div>-->
+<!--<script>-->
+<!--$(function() {-->
+  <!--(function(name) {-->
+    <!--var container = $('#pagination-' + name);-->
+    <!--var sources = function () {-->
+      <!--var result = [];-->
+      <!--{% for i in data %}-->
+        <!--result.push({{i.name}});-->
+      <!--{% endfor %}-->
+      <!--return result;-->
+    <!--}();-->
+    <!--container.pagination({-->
+      <!--dataSource: sources,-->
+      <!--locator: 'items',-->
+      <!--totalNumber: 100,-->
+      <!--pageSize: 20,-->
+      <!--ajax: {-->
+        <!--beforeSend: function() {-->
+          <!--container.prev().html('Loading data from flickr.com ...');-->
+        <!--}-->
+      <!--},-->
+      <!--callback: function(response, pagination) {-->
+        <!--window.console && console.log(22, response, pagination);-->
+        <!--var dataHtml = '<ul>';-->
+        <!--$.each(response, function (index, item) {-->
+          <!--dataHtml += '<li>' + item.title + '</li>';-->
+        <!--});-->
+        <!--dataHtml += '</ul>';-->
+        <!--container.prev().html(dataHtml);-->
+      <!--}-->
+    <!--})-->
+  <!--})('demo2');-->
+<!--})-->
+<!--</script>-->
+

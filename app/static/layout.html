@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+{% block title %}
+    <title>Connected Vehicles</title>
+{% endblock %}
+
+{% block head %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../static/base.css" rel="stylesheet">
+    
+
+    <link href="https://fonts.googleapis.com/css?family=Shadows+Into+Light+Two" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>                         
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> 
+{% endblock %}
+
+<body>
+{% block navbar %}
+    <div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Connected Vehicles</a>
+            <div class="pull-right">
+                <form class="navbar-form" role="search" action="{{ url_for('web.search') }}" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" name="query" id="searchTerm">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit" id="search"><span class="glyphicon glyphicon-search"></span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#content">reversed</a></li>
+                <li><a href="#content">reversed</a></li>
+                <li><a href="#content">reversed</a></li>
+                <li><a href="#content">reversed</a></li>
+            </ul>
+        </div><!--/.navbar-collapse -->
+    </div>
+    </div>
+{% endblock %}
+
+
+
+
+{% block content %}
+{% endblock %}
+
+
+<div id="footer" class="qa-form">
+    <span> @2018-2020  created by Anguszzz Leon</span>
+</div>
+
+</body>
+
+
+
+</html>

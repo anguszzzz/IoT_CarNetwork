@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="mainWrap navslide">
+     <div class="ui equal width left aligned padded grid stackable">
+                              <div class="row">
+                              <div class="sixteen wide tablet eight wide computer column">
+                              <div class="ui segments">
+                              <div class="ui segment">
+                              <h5 class="ui header">
+                              ACCIDENT VIDEO!
+                              </h5>
+                              </div>
+                                  {% if video[0] %}
+
+                             <div class="column">
+                                  <div class="ui segment">
+                                      {% for i in video %}
+                                  <div class="ui card">
+                                  <div class="content">
+                                      <div id="carplate" >{{ i.carPlate }}</div>
+                                  <div class="right floated meta">{{ i.uploadDate }}</div>
+                                   {{ i.videoName }}
+                                  </div>
+                                   <video width=100%px height=100%px controls="controls" autoplay="true">
+
+                                     <source src='/uploads/{{ i.carPlate}}/{{ i.videoName }}' type="video/mp4" >
+
+                                    </video>
+
+                                  <div class="extra content">
+                                  <div class="ui large transparent left icon input">
+                                  <i class="heart outline icon"></i>
+                                  <input type="text" placeholder="Add tags...">
+                                  </div>
+                                  </div>
+                                  </div>
+                                  </div>
+                                   {% endfor %}
+                                  </div>
+                                      <form action ="{{ url_for('web.detection')}}" method="get" >
+                               <div class="sixteen wide tablet eight wide computer column"style="position:absolute;left:850px;top:25px ">
+                               <div class="ui segments">
+                               <div class="ui segment">
+                               <h3 class="ui header">
+                               Object—detection Windows
+                               </h3><div class="ui teal labeled icon button" >
+
+                         <div class="ui dropdown fluid selection" tabindex="0" ><select name="videoname">
+                             <option value="">Delete a video</option>
+                             {% for i in video %}
+                             <option value="{{ i.videoName }}">{{ i.videoName }}</option>
+                             {% endfor %}
+                         </select>
+                             <i class="dropdown icon"></i>
+                             <div class="default text" >Using tinyYOLOV3 to detect</div>
+                             <div class="menu" tabindex="-1">
+                                 {% for i in video %}
+                                 <div class="item" >{{ i.videoName }}</div>
+                                 {% endfor %}
+
+                             </div>
+
+                         </div>
+
+                         <i class="minus icon">
+                         </i>
+                           <button class="ui blue button modalactionone" type="submit">TRY NOW! </button>
+                         </div>
+                               </div>
+                               <div class="ui segment">
+                                 <video width=100%px height=100%px controls="controls" >
+
+                                  <source src='' type="video/mp4" />
+
+                                 </video>
+                                    <h4></h4>
+
+                               </div>
+                               </div>
+                               </div>
+                              </form>
+
+                                  {% else %}
+                                   <div class="ui segment">
+                                    <div class="ui warning message">
+                                        <i class="close icon"></i>
+                                        <div class="header">
+                                        You don't have video uploaded
+                                        </div>
+                                        Please uploads use your car's APIkey, then try again
+                                    </div>
+
+                                </div>
+                                   {% endif %}
+                              </div>
+                              </div>
+
+                              </div>
+
+                               <div class="sixteen wide tablet eight wide computer column"style="position:absolute;left:500px;top:15px ">
+                               <div class="ui segments">
+                               <div class="ui segment">
+                               <h3 class="ui header">
+                               Object—detection Windows
+                               </h3><div class="ui teal labeled icon button" >
+
+
+                             <select id="videoname"name="videoname">
+
+                             {% for i in video %}
+                             <option value="{{ i.videoName }}">{{ i.videoName }}</option>
+                             {% endfor %}
+                             </select>
+
+
+                         <i class="minus icon">
+                         </i>
+                           <button class="ui blue button modalactionone" id='return_path'>TRY NOW! </button>
+                         </div>
+                               </div>
+                               <div class="ui segment">
+
+                                 <video width=100%px height=100%px controls="controls" id="video-box" muted="muted"autoplay="true">
+                                     <source src="/uploads/710/detected2018-08-20-00-07-04.mp4" type='video/mp4'>
+
+
+
+                                 </video>
+
+                                    <h4></h4>
+
+                               </div>
+                               </div>
+                               </div>
+
+
+                              </div>
+    </div>
+
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+    <script src="static/js/video.js"></script>
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends "base.html"%}
+
+{% block content %}
+<div class="mainWrap navslide">
+
+                    <!--TODO: when real data pass in, we should check whether the user register a car or not-->
+
+                        <!--end model-->
+
+                        <div class="sixteen wide tablet sixteen wide computer column">
+                            <div class="ui segments">
+                                <div class="ui segment no-padding-bottom">
+                                    <h2 class="ui left floated header">
+                                        Car Usage Statistics
+                                    </h2>
+                                    <h5 class="ui right floated header">
+                                        <i class="ion-ios-arrow-up icon link"></i>
+                                        <i class="ion-ios-refresh-empty refreshing icon link"></i>
+                                        <i class="ion-ios-close-empty icon link"></i>
+                                    </h5>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="ui segment">
+                                    <div class="ui grid">
+                                        <div class="stretched row">
+
+                                            <!--TODO: chart_1 can be changed by loading data via dashboard2.js-->
+
+                                            <div class="sixteen wide tablet ten wide computer column">
+                                                {% if data.vehiclenumber != 0 %}
+
+                                                    <div style="width: 400px; height: 400px; margin: 0 auto">
+                                                        {% for i in data.vehicles %}
+                                                    	<div id="container-speed" style="width: 300px; height: 200px; float: left"></div>
+                                                    	<div id="container-rpm" style="width: 300px; height: 200px; float: left"></div>
+                                                         {% endfor %}
+                                                    </div>
+
+                                               {% else  %}
+                                                     <video width=100%px height=100%px controls="controls" autoplay="autoplay">
+                                                         <source src="static/video/Connected Vehicle.mp4" type="video/mp4" />
+
+                                                     </video>
+                                                {% endif %}
+                                            </div>
+                                            <div class="sixteen wide tablet six wide computer column">
+                                                <div class="ui horizontal large statistic">
+
+                                                    <div class="value counter">
+                                                        <!--TODO:Real data should be used here-->
+                                                         {{ data.vehiclenumber }}
+                                                    </div>
+                                                    <div class="label">
+                                                        vehicle number
+                                                    </div>
+                                                </div>
+                                                <div id="flot-profile" class="flotchart">
+                                                    <div class="row">
+                                                          <button class="ui blue button modalactionone">Build your Connected Vehicle Network Now!</button>
+
+                                                          <!--A small model-->
+                                                          <div class="ui  modal actionmodal">
+                                                              <div class="header">
+                                                                  Register Car
+                                                              </div>
+                                                              <div class="content">
+                                                                  <p>Please register first?</p>
+                                                              </div>
+                                                              <div class="actions">
+                                                                  <div class="ui black deny button">
+                                                                      Close
+                                                                  </div>
+                                                                  <div class="ui positive right labeled icon button">
+                                                                      OK
+                                                                      <i class="checkmark icon" ></i>
+                                                                  </div>
+                                                              </div>
+                                                          </div>
+                                                </div>
+                                                <table class="ui celled striped table">
+                                                    <thead>
+                                                    <tr>
+
+                                                        <th style="width:25%">Car Plate</th>
+                                                        <th style="width:40%">Car Brand</th>
+                                                        <th style="width:25%">Car type</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                        {% if data.vehiclenumber !=0 %}
+                                                            <tr>
+                                                            {% for i in data.vehicles %}
+
+                                                            <td>{{ i.vehiclePlate }}</td>
+                                                            <td>{{ i.brand }}</td>
+                                                            <td class="text-success">{{i.type }}</td>
+                                                                 </tr>
+                                                            {% endfor %}
+                                                        {% else %}
+                                                             <td>None</td>
+                                                             <td>None</td>
+                                                             <td>None</td>
+                                                        {% endif %}
+
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="stretched row">
+
+                        <div class="sixteen wide tablet sixteen wide computer column">
+                            <div class="ui segments">
+                                <div class="ui segment no-padding-bottom">
+                                    <h2 class="ui left floated header">
+                                        View Car's Detail
+                                    </h2>
+                                    <h5 class="ui right floated header">
+                                        <i class="ion-ios-arrow-up icon link"></i>
+                                        <i class="ion-ios-refresh-empty refreshing icon link"></i>
+                                        <i class="ion-ios-close-empty icon link"></i>
+                                    </h5>
+                                    <div class="clearfix"></div>
+                                </div>
+                                <div class="ui segment left aligned">
+
+                                    <table class="ui very basic center aligned  celled table">
+                                        <thead>
+                                            <tr>
+
+                                                <th>Car Plate</th>
+                                                <th>Register Date</th>
+                                                <th>Running Status</th>
+                                                <th>View Detail</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% if data.vehiclenumber != 0 %}
+                                              {% for i in data.vehicles %}
+                                              <tr>
+                                                <td>{{ i.vehiclePlate }}</td>
+                                                <td>{{ i.registerDate }}</td>
+                                                {%if i.status == 1 %}
+                                                    <td><i class="green check icon"></i></td>
+                                                {% else  %}<td><i class="red close icon"></i></td>
+                                                {% endif %}
+                                                <td><div class="ui animated fade button" id= "ViewDetail"
+                                                         style="background-color: #FFB70A;
+                                                         width: 40%"
+                                                         onclick="javascrtpt:window.location.href='{{i.vehiclePlate  }}'">
+                                                    <div class="visible content">View Detail</div>
+                                                    <div class="hidden content">
+                                                        Car's Info
+                                                    </div>
+                                                </div></td>
+                                               </tr>
+                                               {% endfor %}
+                                        {% else %}
+                                        <tr>
+                                          <td>none</td>
+                                          <td>none</td>
+                                            <td>none</td>
+                                            <td>none</td>
+                                        </tr>
+                                        {% endif %}
+                                      </tbody>
+                                    </table>
+                                    <div class="ui inverted dimmer">
+                                        <div class="ui text loader">Loading</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+</div>
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+
+<script src="static/js/highcharts.js"></script>
+<script src="static/js/highcharts-more.js"></script>
+<script src="static/js/solid-gauge.js"></script>
+<script src="static/js/speed.js"></script>
+{% endblock %}

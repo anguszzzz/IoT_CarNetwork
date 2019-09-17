@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+
+{% block content %}
+     <div class="mainWrap navslide">
+
+            <div class="ui equal width left aligned padded grid stackable">
+                <!--Site Content-->
+                <!--Site Content-->
+
+                        <div class="sixteen wide tablet two wide computer column">
+                            <div class="ui vertical secondary pointing fluid tabular menu">
+                                <a class="item active" data-tab="profile">
+                                    Basic Car Information
+                                </a>
+
+                            </div>
+                        </div>
+                        <div class="sixteen wide tablet fourteen wide computer column">
+                            <div class="ui segment">
+
+                                <div class="ui tab active" data-tab="profile">
+
+                                    
+                                        <h3 class="ui header">
+                                            Basic Car Information
+                                        </h3>
+                                 <form action="{{ url_for('web.regicar') }}" method="post">
+                                        <div class="ui form segment">
+                                        <div class="ui hidden divider"></div>
+                                        <div class="two fields">
+                                            <div class="field">
+                                                <label>Car's Plate</label>
+                                                <input placeholder="vehicle plate" name="vehiclePlate" type="text",value="{{ form.data['vehiclePlate']}}">
+                                            </div>
+                                            <div class="field">
+                                                <label>Automatic or not</label>
+                                                <div class="ui dropdown fluid selection" tabindex="0" ><select name="type">
+                                                    <option value="">Auto or not</option>
+                                                    <option value="automatic">Automatic</option>
+                                                    <option value="normal">Normal</option>
+                                                </select>
+                                                    <i class="dropdown icon"></i>
+                                                    <div class="default text" >Auto or not</div>
+                                                    <div class="menu" tabindex="-1">
+                                                        <div class="item" >Automatic</div>
+                                                        <div class="item" >Normal</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="two fields">
+                                            <div class="field">
+                                                <label>Brand</label>
+                                                <input placeholder="vehicle brand" name="brand" type="text"value="{{ form.data['brand'] }}">
+                                            </div>
+                                            <div class="field">
+                                                <label>Binding mailbox</label>
+                                                 <input name="email" id="email" type="email" autocomplete="off"
+                                                         value="{{ form.data['email']}}"
+                                                         style="width:100%!important;min-width:100%;width:100%;">
+                                            </div>
+                                        </div>
+
+
+                                        <input class="ui blue submit button" type="submit"value="submit">
+                                        </div>
+                                     </form>
+                                        <div class="inline field">
+                                            <div class="ui checkbox">
+                                                <input type="checkbox" name="terms">
+                                                <label>I agree to the terms and conditions</label>
+                                            </div>
+                                        </div>
+                                </div>
+
+
+                                </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+            </div>
+        </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mainWrap navslide">
+<div class="ui equal width left aligned padded grid stackable"> </div>
+               {% for i in data %}
+               <div class="row">
+                   <div class="column">
+                       <div class="ui segments">
+                           <div class="ui segment">
+                               <h3 class="ui header">
+                                   <a href="{{ i.url }}">{{ i.url }}</a>
+                               </h3>
+                                   </div>   {% autoescape true %}
+                                   <div class="ui segment">
+                                      {{i.highlights| e }}
+                                   </div> {% endautoescape %}
+                               </div>
+                           </div>
+                       </div>
+               {% endfor %}
+</div>
+{%  endblock %}

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% block head %}
+    <title>Connected Vehicles</title>
+    <link rel="icon" href="static/img/favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name=viewport content="width=device-width, initial-scale=1" />
+    <link href="static/semantic/dist/semantic.min.css" rel="stylesheet" />
+    <link href="static/plugins/ionicons/css/ionicons.min.css" rel="stylesheet" />
+    <link href="static/css/main.css" rel="stylesheet" />
+    <link href="static/plugins/datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" />
+    <link href="static/plugins/weather-icons/css/weather-icons-wind.min.css" rel="stylesheet" />
+    <link href="static/plugins/weather-icons/css/weather-icons.min.css" rel="stylesheet" />
+    <link href="static/plugins/chartist/chartist.min.css" rel="stylesheet" />
+    <link href="static/css/chat-page.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="static/img/favicon.ico" />
+
+{% endblock %}
+
+<body>
+{% block layout %}
+    <div id="contextWrap">
+        <!--sidebar-->
+        <div class="ui sidebar vertical left menu overlay  borderless visible sidemenu inverted  grey" style="-webkit-transition-duration: 0.1s; transition-duration: 0.1s;" data-color="grey">
+            <a class="item logo" href="{{ url_for('web.index') }}">
+                <img src="static/img/logo.png" alt="stagblogo" /><img src="static/img/thumblogo.png" alt="stagblogo" class="displaynone" />
+            </a>
+            <div class="ui accordion inverted">
+                <div class="title item">
+                    <i class="ion-briefcase titleIcon icon"></i>
+
+                    <i class="dropdown icon"></i> Dashboard
+                </div>
+                <div class="content">
+                    <a class="item" href="{{ url_for('web.carinfo') }}">
+                    <div class="column"><i class="car icon"></i>Manage Cars</div>
+                </a>
+                    <a class="item" href="{{ url_for('web.account') }}">
+                   <div class="column"><i class="user icon"></i>Manage account</div>
+                </a>
+                <!--</a>-->
+
+                </div>
+                <div class="title item">
+                    <i class="ion-briefcase titleIcon icon"></i>
+
+                    <i class="dropdown icon"></i> Tools
+                </div>
+                <div class="content">
+                    <a class="item" href="{{ url_for('web.map') }}">
+                    <div class="column"><i class="marker icon"></i>Map tool</div>
+                </a>
+
+                    <a class="item" href="{{ url_for('web.rec') }}">
+                    <div class="column"><i class="record icon"></i>TripRec</div>
+                </a>
+
+                    <a class="item" href="{{ url_for('web.chart') }}">
+                    <div class="column"><i class="line chart icon"></i> Data analysis</div>
+                </a>
+
+                </div>
+
+                <div class="title item">
+                    <i class="ion-ios-lightbulb titleIcon icon"></i>
+
+                    <i class="dropdown icon"></i>Alert Center
+                </div>
+                <div class="content">
+                    <a class="item" href=" ">
+                       <div class="column"><i class="alarm icon"></i>Alerts</div>
+                    </a>
+
+                </div>
+
+
+
+            </div>
+
+
+
+            <div class="ui divider"></div>
+
+            <a class="item" href="document.html">
+                <div class="column"><i class="file icon"></i>Documents</div>
+            </a>
+            <div class="ui divider"></div>
+            <a class="item">
+
+                    <div class="bar">
+
+                    </div>
+                    <div class="column"><i class="github icon"></i> Github </div>
+                   
+
+
+
+
+            </a>
+
+            <a class="item">
+
+                    <div class="bar">
+                    </div>
+                    <div class="column"><i class="mail outline icon"></i>Mail
+                </div>
+
+            </a>
+
+            <div class="ui divider"></div>
+
+            <a class="item hiddenCollapse">
+                <div class="ui one tiny inverted statistics">
+                    <div class="statistic">
+                        <div class="value">
+                           <span class="text value">Hao Zhu </span>
+                            <h4>lxh</h4>
+                        </div>
+
+                        <div class="label">
+                           Front-end
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class=" value">
+                            <span class="text value">Xianhang Li</span>
+                        </div>
+                        <div class="label">
+                            Back-end
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <span class="text value">Gokop Goteng</span>
+                        </div>
+                        <div class="label">
+                           supervisor
+                        </div>
+                    </div>
+                    <div class="statistic">
+                        <div class="value">
+                            <img src="static/img/avatar/people/Hershell.png" class="ui circular inline  top aligned image"><span class="counter">3</span>
+                        </div>
+                        <div class="label">
+                            Team Members
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        </a>
+        <!--sidebar-->
+        <div class="ui right sidebar">
+            <div class="ui pointing secondary two item tabular menu">
+                <a class="item active" data-tab="first"><i class="red icon ion-chatbox-working icon"></i></a>
+
+                <a class="item" data-tab="fourth"><i class="blue icon ion-gear-a"></i></a>
+            </div>
+            <div class="ui tab active" data-tab="first">
+                <div class="ui small feed">
+                    <h4 class="ui header">Followers Activity</h4>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Abraham.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/carol.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Daryl.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/deana.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/enid.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Glenn.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Hershell.png" alt="label-image">
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Hershell.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Meggie.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Michonne.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Rick.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="date">
+                                3 days ago
+                            </div>
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="event">
+                        <div class="label">
+                            <img src="static/img/avatar/people/Tara.png" alt="label-image" />
+                        </div>
+                        <div class="content">
+                            <div class="summary">
+                                You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+                                <div class="date">
+                                    3 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui tab" data-tab="fourth">
+                <div class="ui form fluid">
+                    <div class="grouped fields">
+                        <label>Connection Limited</label>
+                        <div class="field">
+                            <div class="ui slider checkbox">
+                                <input type="radio" name="throughput" checked="checked">
+                                <label>20 mbps max</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui slider checkbox">
+                                <input type="radio" name="throughput">
+                                <label>10mbps max</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui slider checkbox">
+                                <input type="radio" name="throughput">
+                                <label>5mbps max</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui slider checkbox checked">
+                                <input type="radio" name="throughput">
+                                <label>Unmetered</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+                <div class="ui form fluid">
+                    <div class="grouped fields">
+                        <label>Notifications</label>
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" checked name="public">
+                                <label class="coloring red">Enabled</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" name="public">
+                                <label class="coloring green">Updates</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" name="public">
+                                <label>Comments</label>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="ui toggle checkbox">
+                                <input type="checkbox" name="public">
+                                <label>Chat</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="ui divider"></div>
+
+                <h4 class="ui header">Navbar Color</h4>
+                <div class="ui basic segment">
+
+                    <ul class="colorlist">
+                        <li>
+                            <a class="ui segment yellow inverted" data-addClass="inverted yellow">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment red inverted" data-addClass="inverted red">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment blue inverted" data-addClass="inverted blue">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment black inverted" data-addClass="inverted black">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment orange inverted" data-addClass="inverted orange">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment pink inverted" data-addClass="inverted pink">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment green inverted" data-addClass="inverted green">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment purple inverted" data-addClass="inverted purple">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment violet inverted" data-addClass="inverted violet">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment brown inverted" data-addClass="inverted brown">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment teal inverted" data-addClass="inverted teal">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment greenli inverted" data-addClass="inverted greenli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment grey inverted" data-addClass="inverted grey">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment redli inverted" data-addClass="inverted redli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment yellowli inverted" data-addClass="inverted yellowli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment blueli inverted" data-addClass="inverted blueli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment darkpurpleli inverted" data-addClass="inverted darkpurpleli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment darkorangeli inverted" data-addClass="inverted darkorangeli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment greenli2 inverted" data-addClass="inverted greenli2">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment pinkli inverted" data-addClass="inverted pinkli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment lightyellowli inverted" data-addClass="inverted lightyellowli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment darkli inverted" data-addClass="inverted darkli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment lightbrownli inverted" data-addClass="inverted lightbrownli">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <h4 class="ui header">Sidebar Color</h4>
+                <div class="ui basic segment">
+
+                    <ul class="sidecolor">
+                        <li>
+                            <a class="ui segment yellow inverted" data-addClass="inverted yellow">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment red inverted" data-addClass="inverted red">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment blue inverted" data-addClass="inverted blue">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment black inverted" data-addClass="inverted black">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment orange inverted" data-addClass="inverted orange">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment pink inverted" data-addClass="inverted pink">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment green inverted" data-addClass="inverted green">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment purple inverted" data-addClass="inverted purple">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment violet inverted" data-addClass="inverted violet">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment brown inverted" data-addClass="inverted brown">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment teal inverted" data-addClass="inverted teal">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment greenli inverted" data-addClass="inverted greenli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment grey inverted" data-addClass="inverted grey">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment redli inverted" data-addClass="inverted redli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment yellowli inverted" data-addClass="inverted yellowli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment blueli inverted" data-addClass="inverted blueli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment darkpurpleli inverted" data-addClass="inverted darkpurpleli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment darkorangeli inverted" data-addClass="inverted darkorangeli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment greenli2 inverted" data-addClass="inverted greenli2">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment pinkli inverted" data-addClass="inverted pinkli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment lightyellowli inverted" data-addClass="inverted lightyellowli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment darkli inverted" data-addClass="inverted darkli">
+                            </a>
+                        </li>
+                        <li>
+                            <a class="ui segment lightbrownli inverted" data-addClass="inverted lightbrownli">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <div class="navslide navwrap">
+                <div class="ui menu icon borderless grid" data-color="inverted white">
+                    <a class="item labeled openbtn">
+                        <i class="ion-navicon-round big icon"></i>
+                    </a>
+                    <a class="item labeled expandit" onclick="toggleFullScreen(document.body)">
+                        <i class="ion-arrow-expand big icon"></i>
+                    </a>
+                    <div class="item ui colhidden">
+                        <div class="ui icon input">
+                            <div class="ui icon input">
+                             <form  action="{{ url_for('web.search') }}" method="get">
+                             <input type="text" placeholder="Search on TFL..." name="query" type="submit" >
+                              <i class="search icon" ></i>
+                              </form>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right menu colhidden">
+
+                        <div class="ui dropdown item labeled icon">
+                            <i class="bell icon" ></i>
+                            <!--TODO: Should replace notiNum with real back ground data-->
+                            <div class="ui red label mini circular"id="alertnum"></div>
+                            <div class="menu">
+                                <div class="header">
+                                    Emergency
+                                </div>
+
+                                <div class="item" id="alertmessage">
+
+                                </div>
+
+                                <div id="processalert" onclick="javascrtpt:window.location.href='/processalert'">
+                                    <button class="ui red button"style="width:100%;height:100%">Check</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="ui dropdown item">
+                            <img class="ui mini circular image" src="static/img/avatar/people/enid.png" alt="label-image" />
+                            <!--<div class="menu">-->
+                                <!--<a class="item" href="mail.html">Inbox</a>-->
+                                <!--<a class="item" href="profile.html">Profile</a>-->
+                                <!--<a class="item" href="settings.html">Settings</a>-->
+                                <!--<div class="ui divider"></div>-->
+                                <!--<a class="item">Need Help?</a>-->
+                                <!--<a class="item" href="login.html">Sign Out</a>-->
+                            <!--</div>-->
+                        </div>
+                        <div class="ui dropdown item">
+                            <!--TODO:Need to replace name with real user's name.-->
+                            Hi! {{name}} <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <a class="item" href="profile.html">Profile</a>
+                                <a class="item" href="settings.html">Settings</a>
+                                <div class="ui divider"></div>
+                                <a class="item">Need Help?</a>
+                                <a class="item" href="login.html">Sign Out</a>
+                            </div>
+                            <!--<div class="menu">-->
+                                <!--<a class="item"><i class="united kingdom flag"></i>English</a>-->
+                                <!--<a class="item"><i class="turkey flag"></i>Turkish</a>-->
+                                <!--<a class="item"><i class="spain flag"></i>Spanish</a>-->
+                            <!--</div>-->
+                        </div>
+
+                        <a class="item labeled rightsidebar computer only">
+                            <i class="ion-wrench large icon"></i>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+</body>
+{% block scripts %}
+     <!--jquery-->
+
+    <script src="static/js/jquery-2.1.4.min.js"></script>
+    <!--jquery-->
+    <!--semantic-->
+    <script src="static/semantic/dist/semantic.min.js"></script>
+    <!--semantic-->
+    <!--counter number-->
+    <script src="static/plugins/counterup/jquery.counterup.min.js"></script>
+    <script src="static/plugins/counterup/waypoints.min.js"></script>
+    <!--counter number-->
+    <!--flot chart-->
+    <script src="static/plugins/flot/jquery.flot.js"></script>
+    <script src="static/plugins/flot/jquery.flot.resize.min.js"></script>
+    <script src="static/plugins/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="static/plugins/flot/curvedLines.js"></script>
+    <script src="static/plugins/cookie/js.cookie.js"></script>
+    <!--flot chart-->
+    <!--chartjs chart-->
+    <script src="static/plugins/chartjs/chart.min.js"></script>
+     <script src="/static/js/base.js"></script>
+    <!--chartjs chart-->
+
+    <!--Test for dialog-->
+
+    <!--Test for dialog-->
+
+    <script src="static/plugins/nicescrool/jquery.nicescroll.min.js"></script>
+
+    <script data-pace-options='{ "ajax": false }' src="static/plugins/pacejs/pace.js"></script>
+
+   <!-- <script src="static/plugins/chartist/chartist.min.js"></script>-->
+
+    <script src="static/js/dashboard2.js"></script>
+    <script src="static/js/main.js"></script>
+{% endblock %}
+</html>

@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{%block content %}
+        <div class="mainWrap navslide">
+            <div class="ui equal width left aligned padded grid stackable">
+                <!--Site Content-->
+                <!--Site Content-->
+
+                <div class="row">
+                    <div class="sixteen wide column">
+                        <div class="ui segments">
+                            <div class="ui segment">
+                                <h5 class="ui header">
+                                    Your Connected Vehicles
+                                </h5>
+                            </div>
+
+                            {% if data.vehiclenumber==0 %}
+                                <div class="ui segment">
+                                    <div class="ui warning message">
+                                        <i class="close icon"></i>
+                                        <div class="header">
+                                        You must register before you can do that!
+                                        </div>
+                                        Visit our registration page, then try again
+                                    </div>
+                                </div>
+                                 <div class="ui segment">
+                                <a class="ui primary button saving" value="register" href="{{ url_for('web.regicar') }}">register your car now</a>
+                                 </div>
+                            {% else %}
+
+                            <div class="ui segment">
+                                <div class="ui five column grid stackable">
+                                    {% for i in data.vehicles %}
+                                    <div class="column">
+
+                                        <div class="ui link card" onclick="javascrtpt:window.location.href='{{ i.vehiclePlate }}'">
+                                            <div class="image">
+                                                {% if i.type == 'automatic' %}
+                                                <img src="static/img/car/auto.jpg"  class="transition visible">
+                                                {% else %}
+                                                <img src="static/img/car/nomalcar.jpg"  class="transition visible">
+                                                {% endif %}
+                                            </div>
+                                            <div class="content">
+                                                <div class="header">{{ i.vehiclePlate }}</div>
+                                                <div class="meta">
+                                                    <a>{{ i.type }}</a>
+                                                </div>
+                                                <div class="description">
+                                                   The API key has already generated!
+                                                    Click to see more details
+                                                </div>
+                                            </div>
+                                            <div class="extra content">
+                                                <span class="right floated">
+                                                    register in {{ i.registerDate }}
+                                                </span>
+                                                <span>
+                                                    <i class="taxi yellow icon"></i>
+                                                    {{ i.brand }}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        </div>
+
+                     <div class="ui teal labeled icon button" >
+                      <a href="{{ url_for('web.regicar')}}"> Add a New Car</a>
+                     <i class="add icon"></i>
+                     </div>
+                    <form action="{{ url_for('web.deletecar')}}" method="get">
+                     <div class="ui teal labeled icon button" >
+
+                         <div class="ui dropdown fluid selection" tabindex="0" ><select name="vehiclePlate">
+                             <option value="">Delete a Car</option>
+                             {% for i in data.vehicles %}
+                             <option value="{{ i.vehiclePlate }}">{{ i.vehiclePlate }}</option>
+                             {% endfor %}
+                         </select>
+                             <i class="dropdown icon"></i>
+                             <div class="default text" >Delete a Car</div>
+                             <div class="menu" tabindex="-1">
+                                 {% for i in data.vehicles %}
+                                 <div class="item" >{{ i.vehiclePlate }}</div>
+                                 {% endfor %}
+
+                             </div>
+
+                         </div>
+                      
+                         <i class="minus icon">
+                         </i>
+                           <button class="ui blue button modalactionone" type="submit">DELETE  DATA OF THE VEHICLE YOU CHOOSE </button>
+                         </div>
+                    </form>
+                     </div>
+                       
+
+
+
+
+
+                    </div>
+                </div>
+
+
+</div>
+        </div>
+
+
+
+
+        <!--maincontent-->->
+{% endblock %}
